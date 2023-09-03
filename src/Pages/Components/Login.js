@@ -1,5 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
+import {useNavigate} from "react-router-dom";
 
 export default function Login(props) {
     const[data,setData] = useState({
@@ -7,6 +8,8 @@ export default function Login(props) {
         password : "",
         remember : false
     })
+    const[message,setMessage] = useState("")
+    const naviagte = useNavigate()
 
     function handleChange(e) {
         const{value,type,name,checked} = e.target
@@ -19,7 +22,8 @@ export default function Login(props) {
     }
     function handleSumbit(e) {
          e.preventDefault()
-         console.log(data)
+         setMessage("Incorrect Login Credentials")
+         naviagte("/Main")
 
     }
 
@@ -67,6 +71,7 @@ export default function Login(props) {
                     />
                 <label htmlFor="remember">Remember Me</label>
             </div>
+               {message && <p style={{fontSize:"14px", margin:"0",marginTop:"15px",marginLeft:"80px",marginBottom:"-30px",color:"red"}}>{message}</p> }
             <button>Login</button>
             </div>
             <div className="forgot">

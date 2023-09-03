@@ -7,7 +7,7 @@ export default function Login(props) {
         password : "",
         confirmation : ""
     })
-
+    const[message,setMessage] = useState("")
     function handleChange(e) {
         const{value,name} = e.target
         setData(prevData => {
@@ -19,7 +19,11 @@ export default function Login(props) {
     }
     function handleSumbit(e) {
          e.preventDefault()
-         console.log(data)
+         if(data.password===data.confirmation) {
+             console.log(data)
+         }else {
+            setMessage("Passwords do not match!")
+         }
 
     }
     return(
@@ -67,6 +71,7 @@ export default function Login(props) {
                 />
                 <img src={props.emailicon} style={{top:"66.2%"}}/>
             </div>
+                {message && <p style={{fontSize:"14px", margin:"0",marginTop:"15px",marginLeft:"80px",marginBottom:"-30px",color:"red"}}>{message}</p> }
             <button>Register</button>
             </div>
             <div className="forgot">
