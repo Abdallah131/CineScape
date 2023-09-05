@@ -164,7 +164,7 @@ input:active{
 }
 /* HOME PAGE CSS */
 .Main--Container {
-    height: 100vh;
+    height: 100%;
     background-color: #000000;
     overflow: hidden;
 }
@@ -194,7 +194,7 @@ input:active{
     font-family: Cinzel;
     font-size: 25px;
     font-weight: 700;
-    margin-top: 7px;
+    margin-top: 10px;
     margin-left: 7px;
 }
 .search--input {
@@ -223,6 +223,7 @@ input:active{
 }
 .Header--Right img {
     height: 40px;
+    cursor: pointer;
 }
 .Main--Elements{
     display: flex;
@@ -231,10 +232,128 @@ input:active{
     height: 100vh;
     background: #0C0B10;
     width: 350px;
+    overflow-y: scroll;
 }
-.Right--Element {
-    height: 100vh;
+.Left--Comments {
+    margin-top: 25px;
+    height: 60vh;
     background: #0C0B10;
+    width: 350px;
+    overflow-y: scroll;
+}
+.Left--Comments p{
+    color: #FFF;
+    font-family: Cairo;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 10px;
+    margin-left: 70px;
+    width: fit-content;
+}
+.Left--Comments::-webkit-scrollbar {
+    background-color: #0C0B10;
+    width: 8px; 
+    height: 20px;
+
+}
+.Left--Comments::-webkit-scrollbar-thumb {
+    background-color: #DC4C4C;
+    border-radius: 20px;
+}
+.Right--Element{
     width: 100%;
+}
+.Right--Header {
+    height: 60vh;
+    background: #0C0B10;
     margin-left: 25px;
+    margin-bottom: 25px;
+}
+.Right--Main {
+    background: #0C0B10;
+    margin-left: 25px;
+    height: 100vh;
+}
+.Left--Element p {
+    color: #FFF;
+    font-family: Cairo;
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 0.6;
+    margin-top: 10px;
+    margin-left: 70px;
+    width: fit-content;
+}
+.Left--Element p:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+.Left--Element::-webkit-scrollbar {
+    background-color: #0C0B10;
+    width: 8px; 
+    height: 20px;
+
+}
+.Left--Element::-webkit-scrollbar-thumb {
+    background-color: #DC4C4C;
+    border-radius: 20px;
+}
+.Right--Header p{
+    color: #FFF;
+    font-family: Cinzel;
+    font-size: 28px;
+    font-weight: 700;
+    width: fit-content;
+    margin-left: 50px;
+}
+.Right--Main p{
+    color: #FFF;
+    font-family: Cinzel;
+    font-size: 28px;
+    font-weight: 700;
+    width: fit-content;
+    margin-left: 50px;
+}
+.Popular--Titles {
+    display: flex;
+    width: 100%;
+}
+.Popular--Movie {
+    width: 210px;
+    margin-left: 50px;
+    margin-top: 30px;
+    transition: 0.5s;
+    cursor: grab;
+}
+.Popular--Movie img {
+    width: 210px;
+    height: 280px;
+    border-radius: 20px 20px 0px 0px;
+   -webkit-user-drag: none;
+}
+.Movie--infos {
+    margin-top: -3px;
+    height: 130px;
+    border-radius: 0px 0px 20px 20px;
+    background: rgba(37, 34, 46, 0.50);
+    user-select: none;
+}
+.Movie--infos p {
+    color: rgba(255, 255, 255, 0.80);
+    font-family: Cairo;
+    font-size: 17px;
+    font-weight: 700;
+    user-select: none;
+
+}
+.Movie-date-year {
+    display: flex;
+}
+.Movie-date-year p{
+    font-family: Cairo;
+    font-size: 14px;
+    font-weight: 400;
+}
+.Popular--Movie:hover{
+    transform: scale(1.03);
 }
