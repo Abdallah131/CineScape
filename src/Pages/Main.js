@@ -10,26 +10,27 @@ export default function Main() {
   const[allMovies, setMovies] = React.useState([])
 
   React.useEffect(() => {
-    const url = 'https://moviesdatabase.p.rapidapi.com/titles/x/upcoming';
     const options = {
-	  method: 'GET',
-	  headers: {
-		  'X-RapidAPI-Key': '37e489b656msha10b70ca626b811p1535c7jsn9c18a47c714c',
-		  'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-	  }
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMjZkNzcyZTA2NzExZDQwMzhkMWEyNDkxYzRhMWFmNSIsInN1YiI6IjY0Zjc2NDA5YThiMmNhMDBlMTU4ODk3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.yrUE61r8ZMOUB43DZZhc8XZh89-aCelZG5a5LvG_OIQ'
+      }
     };
-      fetch(url, options)
-      .then(res => res.json())
-      .then(data => setMovies(data.results))
+    
+    fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+      .then(response => response.json())
+      .then(response => setMovies(response.results))
+      .catch(err => console.error(err));
   }, []);
 
   const moviesArray = allMovies.map(movie => {
-    const imageUrl = movie.primaryImage?.url || '';
     return (
       <Movie 
-        name = {movie.originalTitleText.text}
-        date = {movie.releaseYear.year}
-        image = {imageUrl}
+        key = {movie.id}
+        name = {movie.original_title}
+        date = {movie.release_date}
+        image = {movie.poster_path}
       />
     ) 
   })

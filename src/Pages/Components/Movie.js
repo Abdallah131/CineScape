@@ -4,7 +4,7 @@ import {useState} from "react"
 export default function Movie(props) {
     return (
         <div className='Popular--Movie'>
-            <img src={props.image || "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg"} />
+        <img src={`https://image.tmdb.org/t/p/w500${props.image || "/static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg"}`} />
         <div className='Movie--infos'>
           <br/>
             <p style={{marginLeft:"15px",marginBottom:"10px",width:"150px",overflow:"hidden"}}>{props.name}</p>
