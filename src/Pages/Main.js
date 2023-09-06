@@ -1,13 +1,46 @@
 import React from 'react';
-import { useEffect } from 'react';
+import Page from "./Components/Page"
 import Logo from "../Assets/images/playbuttonicon.png" 
 import SearchIcon from "../Assets/images/searchicon.png" 
 import AccountIcon from "../Assets/images/accounticon.png" 
+import Star from "../Assets/images/starimage.png" 
 import Movie from "./Components/Movie"
 
 
 export default function Main() {
-  const[allMovies, setMovies] = React.useState([])
+  const[allMovies, setAllMovies] = React.useState([])
+  const[popularMovies, setPopular] = React.useState([])
+  const[allGenres, setGenres] = React.useState([])
+
+  React.useEffect(() => {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMjZkNzcyZTA2NzExZDQwMzhkMWEyNDkxYzRhMWFmNSIsInN1YiI6IjY0Zjc2NDA5YThiMmNhMDBlMTU4ODk3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.yrUE61r8ZMOUB43DZZhc8XZh89-aCelZG5a5LvG_OIQ'
+      }
+    };
+    
+    fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
+      .then(response => response.json())
+      .then(response => setAllMovies(response.results))
+      .catch(err => console.error(err));
+   }, []);
+
+  React.useEffect(() => {
+   const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMjZkNzcyZTA2NzExZDQwMzhkMWEyNDkxYzRhMWFmNSIsInN1YiI6IjY0Zjc2NDA5YThiMmNhMDBlMTU4ODk3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.yrUE61r8ZMOUB43DZZhc8XZh89-aCelZG5a5LvG_OIQ'
+    }
+  };
+
+  fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
+    .then(response => response.json())
+    .then(response => setGenres(response.genres))
+    .catch(err => console.error(err));
+  }, []);
 
   React.useEffect(() => {
     const options = {
@@ -20,18 +53,46 @@ export default function Main() {
     
     fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
       .then(response => response.json())
-      .then(response => setMovies(response.results))
+      .then(response => setPopular(response.results))
       .catch(err => console.error(err));
   }, []);
 
-  const moviesArray = allMovies.map(movie => {
+  const first10Movies = allMovies.slice(0, 10);
+
+  const allMoviesArray = first10Movies.map(movie => {
+    return(
+      <Movie 
+      key = {movie.id}
+      name = {movie.original_title}
+      namebackup = {movie.name}
+      date = {movie.release_date}
+      datebackup = {movie.first_air_date}
+      image = {movie.poster_path}
+      star = {Star}
+      rating = {movie.vote_average}
+      genres = {movie.genre_ids}
+    />
+    )
+  })
+
+  const moviesArray = popularMovies.map(movie => {
     return (
       <Movie 
         key = {movie.id}
         name = {movie.original_title}
         date = {movie.release_date}
         image = {movie.poster_path}
+        star = {Star}
+        rating = {movie.vote_average}
+        genres = {movie.genre_ids}
       />
+    ) 
+  })
+  const genresArray = allGenres.map(genre => {
+    return (
+        <p key={genre.id}>
+          {genre.name}
+        </p>
     ) 
   })
 
@@ -66,30 +127,7 @@ export default function Main() {
             <p>Most Watched</p>
             <p>IMDb</p>
             <p style={{marginLeft:"40px",opacity:"1",cursor:"default"}}>Genre</p>
-            <p>Action</p>
-            <p>Adult</p>
-            <p>Adventure</p>
-            <p>Animation</p>
-            <p>Biography</p>
-            <p>Comedy</p>
-            <p>Costume</p>
-            <p>Crime</p>
-            <p>Documentary</p>
-            <p>Drama</p>
-            <p>Family</p>
-            <p>Fantasy</p>
-            <p>Film-Noir</p>
-            <p>Game-Show</p>
-            <p>History</p>
-            <p>Horror</p>
-            <p>Music</p>
-            <p>Mystery</p>
-            <p>Fighting</p>
-            <p>Romance</p>
-            <p>Sc-Fi</p>
-            <p>War</p>
-            <p>Thriller</p>
-            <p>Reality</p>
+            {genresArray}
             <p style={{marginLeft:"40px",opacity:"1",cursor:"default"}}>Year</p>
             <p>2023</p>
             <p>2022</p>
@@ -123,6 +161,7 @@ export default function Main() {
 
           </div>
           </div>
+
           <div className='Right--Element'>
             <div className='Right--Header'>
               <br/><br/>
@@ -131,15 +170,38 @@ export default function Main() {
                 {moviesArray}
               </div>
             </div>
+
             <div className='Right--Main'>
             <br/><br/>
-            <p>NEWEST MOVIES</p>
+            <p>ALL MOVIES</p>
             <div className='Main--Movies'>
-                
-              </div>
+              {allMoviesArray}
+            </div>
             </div>
           </div>
-          
+        </div>
+        <div className='Page--Number'>
+          <Page 
+            number = {1}
+          />
+          <Page 
+            number = {2}
+          />
+          <Page 
+            number = {3}
+          />
+          <Page 
+            number = {4}
+          />
+          <Page 
+            number = {5}
+          />
+          <Page 
+            number = ">"
+          />
+          <Page 
+            number = ">>"
+          />
         </div>
       </div>
     );
