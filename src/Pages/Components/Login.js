@@ -23,7 +23,7 @@ export default function Login(props) {
     function handleSumbit(e) {
          e.preventDefault()
          setMessage("Incorrect Login Credentials")
-         naviagte("/Main")
+         naviagte("/Main/1")
 
     }
 
