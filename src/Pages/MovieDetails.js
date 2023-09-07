@@ -5,7 +5,7 @@ export default function MovieInfos() {
     const[allMovies, setAllMovies] = React.useState([])
     const[popularMovies, setPopular] = React.useState([])
 
-    const {id} = useParams()
+    const {id,page} = useParams()
     const movieId = parseInt(id, 10);
     
     React.useEffect(() => {
@@ -17,11 +17,11 @@ export default function MovieInfos() {
           }
         };
         
-        fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
+        fetch(`https://api.themoviedb.org/3/trending/all/day?language=en-US&page=${page}`, options)
           .then(response => response.json())
           .then(response => setAllMovies(response.results))
           .catch(err => console.error(err));
-       }, []);
+       }, [page]);
        
        React.useEffect(() => {
         const options = {
@@ -32,7 +32,7 @@ export default function MovieInfos() {
           }
         };
         
-        fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+        fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=1`, options)
           .then(response => response.json())
           .then(response => setPopular(response.results))
           .catch(err => console.error(err));

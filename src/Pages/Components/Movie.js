@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Movie(props) {
+
   const genreMap = {
     28: 'Action',
     12: 'Adventure',
@@ -42,7 +43,7 @@ export default function Movie(props) {
   }
     return (
         <div className='Popular--Movie'>
-          <Link to={`Movie/${props.id}`}>
+          <Link to={`${props.id}`}>
           <div className='Popular--Image'>
             <img src={`https://image.tmdb.org/t/p/w500${props.image || "/static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg"}`} />
           </div>
