@@ -475,6 +475,7 @@ input:active{
 .Main--Overview {
     margin-left: 600px;
     margin-top: -520px;
+    width: fit-content;
 }
 .Main--Overview p{
     color: #FFF;
@@ -531,4 +532,35 @@ input:active{
 .Similar--Container {
     display: flex;
     opacity: 0.95;
+}
+.Lower--Main {
+    display: flex;
+    position: absolute;
+    top : 93%;
+    right: 45%;
+}
+.Lower--Element {
+    width: fit-content;
+}
+.Lower--Element p{
+    font-family: Cairo;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    cursor: pointer;
+    opacity: 0.85;
+}
+.Lower--Element hr{
+    height: 5px;
+    background-color: #DC4C4C;
+    border-radius: 20px;
+    border-color: #DC4C4C;
+}
+.details--cont {
+    margin-left: 600px;
+}
+.details--element {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 25px;
 }
