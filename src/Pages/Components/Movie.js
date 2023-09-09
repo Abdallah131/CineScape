@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default function Movie(props) {
-
+  const {page} = useParams()
   const genreMap = {
     28: 'Action',
     12: 'Adventure',
@@ -38,12 +38,15 @@ export default function Movie(props) {
     marginBottom: (props.name || props.namebackup).length > 18 ? "10px" : "-20px",
     height:"60px",
     width:"150px",
-    textOverflow:"ellipsis",
     overflow : "hidden"
   }
+  const date = props.date ? props.date.slice(0, 4) : ''
+  const datebackup = props.datebackup ? props.datebackup.slice(0, 4) : ''
+
+
     return (
         <div className='Popular--Movie'>
-          <Link to={`${props.id}`}>
+          <Link to={props.sim ? `/Main/${page}/${props.id}` : `${props.id}`}>
           <div className='Popular--Image'>
             <img src={`https://image.tmdb.org/t/p/w500${props.image || "/static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg"}`} />
           </div>
@@ -57,7 +60,8 @@ export default function Movie(props) {
                 <p style={styles}>{props.name || props.namebackup}</p>
                 <div className='Movie-date-year'>
                 <p style={{color:"#DC4C4C",marginLeft:"15px"}}>{props.type === "tv" ? "TV" : "Movie"}  • </p>
-                <p style={{marginLeft:"15px"}}>{props.date || props.datebackup}</p>
+                <p style={{marginLeft:"15px"}}>{date || datebackup} •</p>
+                <p style={{marginLeft:"10px",opacity:"0.6"}}>({props.count})</p>
               </div>
             </div>
           </Link>

@@ -16,6 +16,10 @@ export default function Main() {
   const[message,setMessage] = React.useState(false)
   const [selectedGenre, setSelectedGenre] = React.useState(null);
 
+  const [activeGenre, setActiveGenre] = React.useState(null);
+  const [activeYear, setActiveYear] = React.useState(null);
+  const [activeType, setActiveType] = React.useState(null);
+  
   const mainMovieRef = useRef(null);
   const {page} = useParams()
 
@@ -84,6 +88,7 @@ export default function Main() {
       rating = {movie.vote_average}
       genres = {movie.genre_ids}
       type = {movie.media_type}
+      count = {movie.vote_count}
     />
     )
   })
@@ -100,15 +105,18 @@ export default function Main() {
         rating = {movie.vote_average}
         genres = {movie.genre_ids}
         type = {movie.media_type}
+        count = {movie.vote_count}
       />
     ) 
   })
 
   const genresArray = allGenres.map((genre) => {
+    const opacity =  activeGenre === genre.id ? 1 : 0.6;
     return (
       <p
         key={genre.id}
         onClick={() => handleGenreFilter(genre.id)}
+        style={{opacity}}
       >
         {genre.name}
       </p>
@@ -175,6 +183,7 @@ export default function Main() {
 
   function handleGenreFilter(genre) {
     setSelectedGenre(genre)
+    setActiveGenre(genre)
     const options = {
       method: 'GET',
       headers: {
@@ -191,6 +200,7 @@ export default function Main() {
   }
   
   function handleYearFilter(year) {   
+    setActiveYear(year)
     const options = {
       method: 'GET',
       headers: {
@@ -207,10 +217,12 @@ export default function Main() {
   }
 
 const yearsArray = [2023, 2022, 2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2000,1990,1980,1970].map((year) => {
+  const opacity = activeYear === year ? 1 : 0.6;
   return (
     <p
       key={year}
       onClick={() => handleYearFilter(year)}
+      style={{opacity}}
     >
       {year}
     </p>
@@ -218,6 +230,7 @@ const yearsArray = [2023, 2022, 2021,2020,2019,2018,2017,2016,2015,2014,2013,201
 });
 
 function handleTypeFilter(tp) {
+  setActiveType(tp)
   var url = ""
   if(tp === "Popular") {
     url =  `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`
@@ -245,10 +258,12 @@ function handleTypeFilter(tp) {
 }
 
 const movietp = ["Trending","Popular","Top Rated","Upcoming","TV-Shows"].map((tp,i) => {
+  const opacity = activeType === tp ? 1 : 0.6;
   return (
     <p
       key={i}
       onClick={() => handleTypeFilter(tp)}
+      style={{opacity}}
     >
       {tp}
     </p>
@@ -261,7 +276,7 @@ const movietp = ["Trending","Popular","Top Rated","Upcoming","TV-Shows"].map((tp
         <a href="/Main/1">
           <div className='Header--Left'>
             <img src={Logo} />
-            <p>CINESCAPE</p>
+            <p>CineScape</p>
           </div>
         </a>
           <div className='Header--Middle'>
