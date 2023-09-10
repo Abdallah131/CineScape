@@ -73,7 +73,7 @@ export default function Main() {
       .then(response => setPopular(response.results))
       .catch(err => console.error(err));
   }, []);
-  const first10 = allMovies.slice(0,10)
+  const first10 =allMovies ?  allMovies.slice(0,10) : []
   const allMoviesArray = first10.map(movie => {
     return(
       <Movie 
@@ -155,6 +155,25 @@ export default function Main() {
     }catch(e) {
       console.log(e)
     }
+
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMjZkNzcyZTA2NzExZDQwMzhkMWEyNDkxYzRhMWFmNSIsInN1YiI6IjY0Zjc2NDA5YThiMmNhMDBlMTU4ODk3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.yrUE61r8ZMOUB43DZZhc8XZh89-aCelZG5a5LvG_OIQ'
+      }
+    };
+    
+    fetch(`https://api.themoviedb.org/3/search/person?query=${query}&include_adult=false&language=en-US&page=1`, options)
+    .then(response => response.json())
+    .then(data => {
+      if (Array.isArray(data.results) && data.results.length > 0) {
+        setAllMovies(data.results[0].known_for);
+      } else {
+        console.error('No results found.');
+      }
+    })
+    .catch(err => console.error(err));
   }
 
   const genreMap = {
@@ -283,7 +302,7 @@ const movietp = ["Trending","Popular","Top Rated","Upcoming","TV-Shows"].map((tp
             <div className='search--input'>
               <form onSubmit={handleSubmit}>
                   <input 
-                  placeholder='Search...'
+                  placeholder="Search...(Movie name, Actor's name)"
                   type='text'
                   name="search"
                   value={query}
