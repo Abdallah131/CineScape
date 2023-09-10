@@ -92,8 +92,8 @@ export default function Main() {
     />
     )
   })
-
-  const moviesArray = popularMovies.map(movie => {
+  const popular4 = popularMovies ? popularMovies.slice(0,5) : [];
+  const moviesArray = popular4.map(movie => {
     return (
       <Movie 
         key = {movie.id}
@@ -320,6 +320,7 @@ const movietp = ["Trending","Popular","Top Rated","Upcoming","TV-Shows"].map((tp
               <br/><br/>
               <p>POPULAR MOVIES</p>
               <div className='Popular--Titles'>
+                <div style={{marginRight:"80px"}}></div>
                 {moviesArray}
               </div>
             </div>

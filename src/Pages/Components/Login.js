@@ -1,6 +1,8 @@
 import React from 'react';
 import {useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
+import Swal from 'sweetalert2';
 
 export default function Login(props) {
     const[data,setData] = useState({
@@ -20,11 +22,24 @@ export default function Login(props) {
             }
         })
     }
+
     function handleSumbit(e) {
          e.preventDefault()
-         setMessage("Incorrect Login Credentials")
-         naviagte("/Main/1")
-
+         axios.post("http://localhost/api/auth.php", data)
+         .then(response => {
+            if (response.data.status === 'success') {
+                    naviagte("/Main/1")
+            } else if (response.data.status === 'error') {
+              Swal.fire({
+                title: 'Incorrect Credentials',
+                html: 'Verify email and password',
+                icon: 'error',
+              });
+            }
+          })
+          .catch((error) => {
+            console.error('Error :', error);
+          });
     }
 
     return(
