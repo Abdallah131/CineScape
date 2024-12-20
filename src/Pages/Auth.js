@@ -1,12 +1,12 @@
 import React from 'react';
-import Superman from '../Assets/images/superman.jpg'
-import facebook from '../Assets/images/facebookicon.png'
-import instagram from '../Assets/images/instaicon.png'
-import linkedin from '../Assets/images/linkedicon.png'
+import Superman from '../assets/images/superman.jpg'
+import facebook from '../assets/images/facebookicon.png'
+import instagram from '../assets/images/instaicon.png'
+import linkedin from '../assets/images/linkedicon.png'
 import Login from '../Pages/Components/Login'
 import Register from '../Pages/Components/Register'
-import emailicon from '../Assets/images/passwordlogo.png'
-import passwordicon from '../Assets/images/emaillogo.png'
+import emailicon from '../assets/images/passwordlogo.png'
+import passwordicon from '../assets/images/emaillogo.png'
 import {useState} from 'react'
 
 export default function Auth() {

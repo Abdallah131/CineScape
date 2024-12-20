@@ -1,5 +1,5 @@
 {
-  "name": "gymgenius",
+  "name": "cinescape",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,6 +12,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
+    "sass": "^1.83.0",
+    "styled-components": "^6.1.13",
     "sweetalert2": "^11.7.27",
     "web-vitals": "^2.1.4"
   },

@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import Page from "./Components/Page"
-import Logo from "../Assets/images/playbuttonicon.png" 
-import SearchIcon from "../Assets/images/searchicon.png" 
-import AccountIcon from "../Assets/images/accounticon.png" 
-import Star from "../Assets/images/starimage.png" 
+import Logo from "../assets/images/playbuttonicon.png" 
+import SearchIcon from "../assets/images/searchicon.png" 
+import AccountIcon from "../assets/images/accounticon.png" 
+import Star from "../assets/images/starimage.png" 
 import Movie from "./Components/Movie"
 import { useParams } from 'react-router-dom';
 

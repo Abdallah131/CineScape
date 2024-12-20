@@ -1,10 +1,10 @@
 import React from 'react';
 import {useParams} from "react-router-dom";
 import Movie from "./Components/Movie"
-import Star from "../Assets/images/starimage.png" 
-import Logo from "../Assets/images/playbuttonicon.png" 
-import AccountIcon from "../Assets/images/accounticon.png" 
-import FireIcon from "../Assets/images/fireicon.png" 
+import Star from "../assets/images/starimage.png" 
+import Logo from "../assets/images/playbuttonicon.png" 
+import AccountIcon from "../assets/images/accounticon.png" 
+import FireIcon from "../assets/images/fireicon.png" 
 
 export default function MovieInfos() {
     const[similarMovies, setSimilar] = React.useState([])
